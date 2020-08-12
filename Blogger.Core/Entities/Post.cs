@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Blogger.Core.Entities
 {
@@ -13,7 +11,8 @@ namespace Blogger.Core.Entities
         public string Content { get; set; }
         public string Summary { get; set; }
         public DateTime PublishDate { get; set; }
-        public int Category { get; set; }
+        public string CategoryId { get; set; }
         public int Status { get; set; }
+        public int StatusReason { get; set; }
     }
 }

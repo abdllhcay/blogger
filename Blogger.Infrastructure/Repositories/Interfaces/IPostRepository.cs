@@ -1,6 +1,8 @@
-﻿namespace Blogger.Infrastructure.Repositories
+﻿using Blogger.Core.Entities;
+
+namespace Blogger.Infrastructure.Repositories
 {
-    public interface IPostRepository
+    public interface IPostRepository : IRepository<Post>
     {
     }
 }
