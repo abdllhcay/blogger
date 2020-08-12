@@ -11,7 +11,7 @@ namespace Blogger.Core.Entities
         public string Content { get; set; }
         public string Summary { get; set; }
         public DateTime PublishDate { get; set; }
-        public string CategoryId { get; set; }
+        public string Category { get; set; }
         public int Status { get; set; }
         public int StatusReason { get; set; }
     }

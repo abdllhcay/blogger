@@ -12,16 +12,18 @@ namespace Blogger.Infrastructure.Services
     public class PostService : IPostService
     {
         private readonly IPostRepository _repository;
-        public PostService(IPostRepository repository)
+        private readonly ICategoryRepository _categoryRepository;
+        public PostService(IPostRepository repository, ICategoryRepository categoryRepository)
         {
             _repository = repository;
+            _categoryRepository = categoryRepository;
         }
 
         public Post CreatePost(CreatePostModel model)
         {
             Post post = new Post
             {
-                CategoryId = model.CategoryId,
+                Category = model.Category,
                 Content = model.Content,
                 Id = Guid.NewGuid().ToString(),
                 PublishDate = model.PublishDate,
@@ -48,6 +50,7 @@ namespace Blogger.Infrastructure.Services
         public IEnumerable<Post> GetPosts(GetPostsModel model)
         {
             var posts = _repository.GetAll();
+            posts.ToList().ForEach(p => p.Category = $"/api/categories/{p.Category}");
 
             var filteredPosts = new FilterBuilder()
                 .SetName(model.Title)
@@ -63,7 +66,7 @@ namespace Blogger.Infrastructure.Services
         {
             Post post = new Post
             {
-                CategoryId = model.CategoryId,
+                Category = model.CategoryId,
                 Content = model.Content,
                 Id = id,
                 PublishDate = model.PublishDate,
