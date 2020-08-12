@@ -88,8 +88,23 @@ namespace Blogger.Web.Controllers
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(string id, [FromBody] UpdatePostModel model)
         {
+            try
+            {
+                var post = _service.UpdatePost(id, model);
+
+                return Ok(post);
+            }
+            catch (Exception ex)
+            {
+                return new ContentResult
+                {
+                    StatusCode = StatusCodes.Status500InternalServerError,
+                    Content = ex.Message,
+                    ContentType = "text/plain",
+                };
+            }
         }
 
         [HttpDelete("{id}")]

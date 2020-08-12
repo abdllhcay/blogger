@@ -9,5 +9,6 @@ namespace Blogger.Infrastructure.Services
         Post GetPost(string id);
         IEnumerable<Post> GetPosts(GetPostsModel model);
         Post CreatePost(CreatePostModel model);
+        Post UpdatePost(string id, UpdatePostModel model);
     }
 }

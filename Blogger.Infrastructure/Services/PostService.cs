@@ -51,12 +51,25 @@ namespace Blogger.Infrastructure.Services
                 .SetEndDate(model.End)
                 .Build(posts);
 
-            //if (!string.IsNullOrWhiteSpace(model.Title))
-            //{
-            //    posts = posts.Where(p => p.Title.Contains(model.Title)).ToList();
-            //}
-
             return filteredPosts;
+        }
+
+        public Post UpdatePost(string id, UpdatePostModel model)
+        {
+            Post post = new Post
+            {
+                CategoryId = model.CategoryId,
+                Content = model.Content,
+                Id = id,
+                PublishDate = model.PublishDate,
+                Status = (int)GeneralEnums.Status.Active,
+                StatusReason = (int)PostEnums.StatusReason.Published,
+                Summary = model.Summary,
+                Title = model.Title
+            };
+
+            _repository.Update(post);
+            return post;
         }
     }
 }

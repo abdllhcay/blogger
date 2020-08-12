@@ -35,5 +35,18 @@ namespace Blogger.Infrastructure.Services
         {
             return _repository.Get(id);
         }
+
+        public Category UpdateCategory(string id, UpdateCategoryModel model)
+        {
+            Category category = new Category
+            {
+                Id = id,
+                Name = model.Name
+                
+            };
+
+            _repository.Update(category);
+            return category;
+        }
     }
 }
