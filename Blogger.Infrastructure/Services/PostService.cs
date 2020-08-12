@@ -6,6 +6,7 @@ using Blogger.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.XPath;
 
 namespace Blogger.Infrastructure.Services
 {
@@ -23,7 +24,7 @@ namespace Blogger.Infrastructure.Services
         {
             Post post = new Post
             {
-                Category = model.Category,
+                CategoryId = model.CategoryId,
                 Content = model.Content,
                 Id = Guid.NewGuid().ToString(),
                 PublishDate = model.PublishDate,
@@ -42,15 +43,26 @@ namespace Blogger.Infrastructure.Services
             _repository.Delete(id);
         }
 
-        public Post GetPost(string id)
+        public ViewPostModel GetPost(string id)
         {
-            return _repository.Get(id);
+            var post = _repository.Get(id);
+
+            return new ViewPostModel
+            {
+                Category = $"/api/categories/{post.CategoryId}",
+                Content = post.Content,
+                Id = post.Id,
+                PublishDate = post.PublishDate,
+                Status = post.Status,
+                StatusReason = post.StatusReason,
+                Summary = post.Summary,
+                Title = post.Title
+            };
         }
 
-        public IEnumerable<Post> GetPosts(GetPostsModel model)
+        public IEnumerable<ViewPostModel> GetPosts(GetPostsModel model)
         {
             var posts = _repository.GetAll();
-            posts.ToList().ForEach(p => p.Category = $"/api/categories/{p.Category}");
 
             var filteredPosts = new FilterBuilder()
                 .SetName(model.Title)
@@ -59,14 +71,30 @@ namespace Blogger.Infrastructure.Services
                 .SetEndDate(model.End)
                 .Build(posts);
 
-            return filteredPosts;
+            var result = new List<ViewPostModel>();
+            filteredPosts.ToList().ForEach(post =>
+            {
+                result.Add(new ViewPostModel
+                {
+                    Category = $"/api/categories/{post.CategoryId}",
+                    Content = post.Content,
+                    Id = post.Id,
+                    PublishDate = post.PublishDate,
+                    Status = post.Status,
+                    StatusReason = post.StatusReason,
+                    Summary = post.Summary,
+                    Title = post.Title
+                });
+            });
+
+            return result;
         }
 
         public Post UpdatePost(string id, UpdatePostModel model)
         {
             Post post = new Post
             {
-                Category = model.Category,
+                CategoryId = model.CategoryId,
                 Content = model.Content,
                 Id = id,
                 PublishDate = model.PublishDate,

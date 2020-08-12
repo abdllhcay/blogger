@@ -22,7 +22,7 @@ namespace Blogger.Infrastructure.Data
                 context.Posts.AddRange(
                     new Post
                     {
-                        Category = "1",
+                        CategoryId = "1",
                         Content = "In bibendum, dui tristique blandit suscipit, odio arcu ornare mauris, ac ultrices dolor lorem at ante. ",
                         Id = "1",
                         PublishDate = new DateTime(2020, 6, 20, 18, 12, 0),
@@ -33,7 +33,7 @@ namespace Blogger.Infrastructure.Data
                     },
                     new Post
                     {
-                        Category = "2",
+                        CategoryId = "2",
                         Content = "Cras elit tortor, ultrices sit amet facilisis eu, dapibus eu metus. Aenean vestibulum turpis felis, eget tempus arcu sodales non.",
                         Id = "2",
                         PublishDate = new DateTime(2020, 8, 20, 18, 12, 0),
@@ -44,7 +44,7 @@ namespace Blogger.Infrastructure.Data
                     },
                     new Post
                     {
-                        Category = "1",
+                        CategoryId = "1",
                         Content = "Vivamus massa nunc, lobortis pellentesque dignissim blandit, aliquam porttitor orci. Sed eu libero quis turpis porttitor tincidunt. ",
                         Id = "3",
                         PublishDate = new DateTime(2020, 8, 10, 18, 12, 0),
