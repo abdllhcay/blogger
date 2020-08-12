@@ -1,9 +1,11 @@
 ﻿using Blogger.Core.Entities;
 using Blogger.Core.Enums;
+using Blogger.Core.Helpers.Filtering;
 using Blogger.Core.Models.Post;
 using Blogger.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Blogger.Infrastructure.Services
 {
@@ -38,9 +40,23 @@ namespace Blogger.Infrastructure.Services
             return _repository.Get(id);
         }
 
-        public IEnumerable<Post> GetPosts()
+        public IEnumerable<Post> GetPosts(GetPostsModel model)
         {
-            return _repository.GetAll();
+            var posts = _repository.GetAll();
+
+            var filteredPosts = new FilterBuilder()
+                .SetName(model.Title)
+                .SetDate(model.Date)
+                .SetStartDate(model.Start)
+                .SetEndDate(model.End)
+                .Build(posts);
+
+            //if (!string.IsNullOrWhiteSpace(model.Title))
+            //{
+            //    posts = posts.Where(p => p.Title.Contains(model.Title)).ToList();
+            //}
+
+            return filteredPosts;
         }
     }
 }

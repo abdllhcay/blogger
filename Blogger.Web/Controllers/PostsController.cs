@@ -18,11 +18,11 @@ namespace Blogger.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery] GetPostsModel model)
         {
             try
             {
-                var posts = _service.GetPosts();
+                var posts = _service.GetPosts(model);
 
                 if (!posts.Any())
                 {
