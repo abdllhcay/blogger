@@ -10,5 +10,6 @@ namespace Blogger.Infrastructure.Services
         IEnumerable<Post> GetPosts(GetPostsModel model);
         Post CreatePost(CreatePostModel model);
         Post UpdatePost(string id, UpdatePostModel model);
+        void DeletePost(string id);
     }
 }

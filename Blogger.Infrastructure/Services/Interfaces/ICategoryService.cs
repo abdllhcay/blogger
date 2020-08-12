@@ -10,5 +10,6 @@ namespace Blogger.Infrastructure.Services
         IEnumerable<Category> GetCategories();
         Category CreateCategory(CreateCategoryModel model);
         Category UpdateCategory(string id, UpdateCategoryModel model);
+        void DeleteCategory(string id);
     }
 }

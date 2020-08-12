@@ -26,6 +26,11 @@ namespace Blogger.Infrastructure.Services
             return category;
         }
 
+        public void DeleteCategory(string id)
+        {
+            _repository.Delete(id);
+        }
+
         public IEnumerable<Category> GetCategories()
         {
             return _repository.GetAll();

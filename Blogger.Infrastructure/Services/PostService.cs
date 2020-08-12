@@ -35,6 +35,11 @@ namespace Blogger.Infrastructure.Services
             return post;
         }
 
+        public void DeletePost(string id)
+        {
+            _repository.Delete(id);
+        }
+
         public Post GetPost(string id)
         {
             return _repository.Get(id);

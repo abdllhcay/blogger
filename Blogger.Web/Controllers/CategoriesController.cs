@@ -108,8 +108,23 @@ namespace Blogger.Web.Controllers
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(string id)
         {
+            try
+            {
+                _service.DeleteCategory(id);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return new ContentResult
+                {
+                    StatusCode = StatusCodes.Status500InternalServerError,
+                    Content = ex.Message,
+                    ContentType = "text/plain",
+                };
+            }
         }
     }
 }
