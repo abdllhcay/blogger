@@ -10,6 +10,7 @@ Projede yer alan pattern'ler:
 Projede kullanılan teknolojiler:
 - SQLServer : SQL Server ile birçok proje geliştirdim
 - EF Core : EF Core ile pek çok projede ORM işlevlerini kullandım
+- Design pattern'ler : Projede yer alan design pattern'lerin hepsi ile geliştirme yaptım
 
 Projeye eklenecek özellikler:
 - Üyelik sistemi
