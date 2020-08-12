@@ -13,7 +13,6 @@ namespace Blogger.Core.Entities
         public string Content { get; set; }
         public string Summary { get; set; }
         public DateTime PublishDate { get; set; }
-        public List<string> Tags { get; set; }
         public int Category { get; set; }
         public int Status { get; set; }
     }
