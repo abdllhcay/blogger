@@ -66,7 +66,7 @@ namespace Blogger.Infrastructure.Services
         {
             Post post = new Post
             {
-                Category = model.CategoryId,
+                Category = model.Category,
                 Content = model.Content,
                 Id = id,
                 PublishDate = model.PublishDate,

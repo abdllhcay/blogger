@@ -23,6 +23,6 @@ namespace Blogger.Core.Models.Post
 
         [Required(ErrorMessage = ErrorMessages.RequiredField)]
         [Display(Name = "Kategori")]
-        public string CategoryId { get; set; }
+        public string Category { get; set; }
     }
 }
